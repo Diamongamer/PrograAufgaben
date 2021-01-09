@@ -7,7 +7,7 @@ public class Entry<K, V> {
      * @param k
      * @param v
      */
-    Entry(K k, V v) {
+    public Entry(K k, V v) {
         this.key=k;
         this.value=v;
     }
