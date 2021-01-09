@@ -8,13 +8,13 @@ public abstract class AbstractReadableMap<K, V> implements ReadableMap{
     @Override
     public Object getOrThrow(Object key) throws UnknownKeyException {
         if(key == null) {
-            throw new UnknownKeyException("No key was given");
+            throw new UnknownKeyException();
         }
         for (Entry entry : entries) {
             if (key.equals(entry.getKey())) {
                 return entry.getValue();
             }
         }
-        throw new UnknownKeyException("Key not found");
+        throw new UnknownKeyException();
     }
 }
