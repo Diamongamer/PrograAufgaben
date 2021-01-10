@@ -1,5 +1,3 @@
-import java.util.HashSet;
-
 public class Launcher {
     public static void main(String[] args) {
         MutableMap<String, Integer> map = new MutableMap<>();
