@@ -1,4 +1,5 @@
 public class Launcher {
+    @SuppressWarnings("unchecked")
     public static void main(String[] args) {
         MutableMap<String, Integer> map = new MutableMap<>();
         putEntries(map);
