@@ -9,17 +9,17 @@ isMatrix (x1:x2:xs) = (length x1 == length x2) && isMatrix (x2:xs)
 dimension :: [[Int]] -> [Int]
 dimension x = if isMatrix x == True
                 then
-                  [numberOfRows x, numberOfCollumns x]
+                  [numberOfRows x, numberOfColumns x]
                 else [-1,-1]
 
 numberOfRows :: [[Int]] -> Int
 numberOfRows (x:xs) = length x
 
-numberOfCollumns :: [[Int]] -> Int
-numberOfCollumns x = length x
+numberOfColumns :: [[Int]] -> Int
+numberOfColumns x = length x
 
 isQuadratic :: [[Int]] -> Bool
-isQuadratic x = numberOfCollumns x == numberOfRows x
+isQuadratic x = numberOfColumns x == numberOfRows x
 
 getRow :: [[Int]] -> Int -> [Int]
 getRow x i | isMatrix x && i <= length x && i > 0 = x !! (i-1)
@@ -48,3 +48,10 @@ setRow [] _ _ = []
 setRow (x:xs) j a | length (x:xs) > 0 && j/=1 = x:setRow xs (j-1) a
                   | length (x:xs) > 0 && j==1 = a:setRow xs (j-1) a
                   | otherwise = []
+
+setColumn :: [[Int]] -> Int -> [Int] -> [[Int]]
+setColumn [] _ _ = []
+setColumn [[]] _ _ = [[]]
+setColumn x _ [] = x
+setColumn (x:xs) i (a:as) | isMatrix (x:xs) = setRow x i a : setColumn xs i as
+                          | otherwise = []
