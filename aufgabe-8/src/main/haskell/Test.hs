@@ -40,18 +40,18 @@ travHelper x i | i < length x = getCol x i : travHelper x (i+1)
 setEntry :: [[Int]] -> Int -> Int -> Int -> [[Int]]
 setEntry [] _ _ _ = []
 setEntry (x:xs) i j a | isMatrix (x:xs) && i/=1 = x : setEntry xs (i-1) j a
-                      | isMatrix (x:xs) && i==1 = setRow x j a : setEntry xs (i-1) j a
+                      | isMatrix (x:xs) && i==1 = setRowAt x j a : setEntry xs (i-1) j a
                       | otherwise = []
 
-setRow :: [Int] -> Int -> Int -> [Int]
-setRow [] _ _ = []
-setRow (x:xs) j a | length (x:xs) > 0 && j/=1 = x:setRow xs (j-1) a
-                  | length (x:xs) > 0 && j==1 = a:setRow xs (j-1) a
-                  | otherwise = []
+setRowAt :: [Int] -> Int -> Int -> [Int]
+setRowAt [] _ _ = []
+setRowAt (x:xs) j a | length (x:xs) > 0 && j/=1 = x:setRowAt xs (j-1) a
+                    | length (x:xs) > 0 && j==1 = a:setRowAt xs (j-1) a
+                    | otherwise = []
 
 setColumn :: [[Int]] -> Int -> [Int] -> [[Int]]
 setColumn [] _ _ = []
 setColumn [[]] _ _ = [[]]
 setColumn x _ [] = x
-setColumn (x:xs) i (a:as) | isMatrix (x:xs) && length (getCol (x:xs) 1) == length (a:as) && length x == i = setRow x i a : setColumn xs i as
+setColumn (x:xs) i (a:as) | isMatrix (x:xs) && length (getCol (x:xs) 1) == length (a:as) && length x == i = setRowAt x i a : setColumn xs i as
                           | otherwise = []
