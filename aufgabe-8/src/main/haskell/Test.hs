@@ -45,6 +45,6 @@ setEntry (x:xs) i j a | isMatrix (x:xs) && i/=1 = x : setEntry xs (i-1) j a
 
 setRow :: [Int] -> Int -> Int -> [Int]
 setRow [] _ _ = []
-setRow (x:xs) j a | length (x:xs) >= 0 && j/=1 = x:setRow xs (j-1) a
-                  | length (x:xs) >= 0 && j==1 = j:setRow xs (j-1) a
+setRow (x:xs) j a | length (x:xs) > 0 && j/=1 = x:setRow xs (j-1) a
+                  | length (x:xs) > 0 && j==1 = a:setRow xs (j-1) a
                   | otherwise = []
