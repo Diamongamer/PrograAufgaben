@@ -53,5 +53,5 @@ setColumn :: [[Int]] -> Int -> [Int] -> [[Int]]
 setColumn [] _ _ = []
 setColumn [[]] _ _ = [[]]
 setColumn x _ [] = x
-setColumn (x:xs) i (a:as) | isMatrix (x:xs) && length (getCol (x:xs) 1) == length (a:as) && length x == i = setRowAt x i a : setColumn xs i as
+setColumn (x:xs) i (a:as) | isMatrix (x:xs) && length (getCol (x:xs) 1) == length (a:as) && length x >= i && i/=0 = setRowAt x i a : setColumn xs i as
                           | otherwise = []
